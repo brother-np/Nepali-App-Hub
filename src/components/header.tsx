@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { PanelsTopLeft } from 'lucide-react';
+import { UserStatus } from './admin/user-status';
 
 export function Header() {
   return (
@@ -15,11 +16,7 @@ export function Header() {
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-2">
-            <Button asChild variant="ghost">
-                <Link href="/login">
-                    Admin
-                </Link>
-            </Button>
+            <UserStatus />
         </div>
       </div>
     </header>
