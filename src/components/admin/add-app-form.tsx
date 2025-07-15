@@ -33,6 +33,7 @@ const formSchema = z.object({
   name: z.string().min(2, 'App name must be at least 2 characters.'),
   description: z.string().min(10, 'Description must be at least 10 characters.'),
   iconUrl: z.string().url('Please enter a valid URL.'),
+  appLink: z.string().url('Please enter a valid URL for the app.'),
   category: z.enum(['Finance', 'E-commerce', 'Utilities', 'Social', 'Entertainment']),
 });
 
@@ -47,6 +48,7 @@ export function AddAppForm() {
       name: '',
       description: '',
       iconUrl: '',
+      appLink: '',
     },
   });
 
@@ -136,6 +138,19 @@ export function AddAppForm() {
               <FormLabel>Icon URL</FormLabel>
               <FormControl>
                 <Input placeholder="https://example.com/icon.png" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="appLink"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>App Link</FormLabel>
+              <FormControl>
+                <Input placeholder="https://play.google.com/store/apps/details?id=com.example.app" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

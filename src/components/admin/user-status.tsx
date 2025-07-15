@@ -11,8 +11,9 @@ async function handleLogout() {
   redirect('/login');
 }
 
-export function UserStatus() {
-  const isAuthenticated = cookies().get('auth')?.value === 'true';
+export async function UserStatus() {
+  const cookieStore = cookies();
+  const isAuthenticated = cookieStore.get('auth')?.value === 'true';
 
   if (isAuthenticated) {
     return (
