@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import type { App } from '@/lib/types';
 import { Button } from './ui/button';
 import Link from 'next/link';
-import { Download, Smartphone } from 'lucide-react';
+import { Computer, Smartphone } from 'lucide-react';
 
 interface AppCardProps {
   app: App;
@@ -39,7 +39,7 @@ export function AppCard({ app }: AppCardProps) {
         {app.pcLink && (
           <Button asChild variant="secondary" className="w-full">
             <Link href={app.pcLink} target="_blank">
-              <Download className="mr-2 h-4 w-4" /> Download for PC
+              <Computer className="mr-2 h-4 w-4" /> Download for PC
             </Link>
           </Button>
         )}
