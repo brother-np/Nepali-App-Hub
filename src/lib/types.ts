@@ -6,4 +6,6 @@ export type App = {
   description: string;
   icon: string;
   category: AppCategory;
+  appLink: string;
+  pcLink?: string;
 };
