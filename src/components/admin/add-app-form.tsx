@@ -28,11 +28,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 const formSchema = z.object({
   name: z.string().min(2, 'App name must be at least 2 characters.'),
   description: z.string().min(10, 'Description must be at least 10 characters.'),
-  iconUrl: z.string().url('Please enter a valid URL.'),
+  icon: z.string().min(1, 'An icon image is required.'),
   appLink: z.string().url('Please enter a valid URL for the app.'),
   pcLink: z.string().url('Please enter a valid URL.').optional().or(z.literal('')),
   category: z.enum(['Finance', 'E-commerce', 'Utilities', 'Social', 'Entertainment']),
@@ -42,17 +43,39 @@ export function AddAppForm() {
   const [suggestedTags, setSuggestedTags] = useState<string[]>([]);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const { toast } = useToast();
+  const [iconPreview, setIconPreview] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       description: '',
-      iconUrl: '',
+      icon: '',
       appLink: '',
       pcLink: '',
     },
   });
+
+  const handleIconChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) { // 2MB limit
+         toast({
+          title: 'Image too large',
+          description: 'Please select an image smaller than 2MB.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const dataUrl = reader.result as string;
+        form.setValue('icon', dataUrl);
+        setIconPreview(dataUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSuggestTags = async () => {
     const description = form.getValues('description');
@@ -90,6 +113,7 @@ export function AddAppForm() {
     });
     form.reset();
     setSuggestedTags([]);
+    setIconPreview(null);
   }
 
   return (
@@ -134,13 +158,30 @@ export function AddAppForm() {
         />
         <FormField
           control={form.control}
-          name="iconUrl"
+          name="icon"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Icon URL</FormLabel>
+              <FormLabel>App Icon</FormLabel>
               <FormControl>
-                <Input placeholder="https://example.com/icon.png" {...field} />
+                <Input 
+                  type="file" 
+                  accept="image/png, image/jpeg, image/webp"
+                  onChange={handleIconChange}
+                  className="file:text-primary file:font-medium"
+                />
               </FormControl>
+              <FormDescription>Upload a PNG, JPG, or WEBP file (max 2MB).</FormDescription>
+              {iconPreview && (
+                <div className="mt-4">
+                  <Image 
+                    src={iconPreview} 
+                    alt="Icon preview" 
+                    width={64} 
+                    height={64} 
+                    className="rounded-xl border shadow-sm"
+                  />
+                </div>
+              )}
               <FormMessage />
             </FormItem>
           )}
