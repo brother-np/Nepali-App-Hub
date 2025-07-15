@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'GharApp - Discover Nepali Apps',
+  title: 'Nepali App Hub - Discover Nepali Apps',
   description: 'A central hub to discover applications from Nepal.',
 };
 

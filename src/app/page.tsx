@@ -24,7 +24,7 @@ export default async function Home() {
       </main>
       <footer className="py-6 border-t bg-background">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} GharApp. All rights reserved.
+          &copy; {new Date().getFullYear()} Nepali App Hub. All rights reserved.
         </div>
       </footer>
     </div>

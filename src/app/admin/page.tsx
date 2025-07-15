@@ -12,7 +12,7 @@ export default function AdminPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="font-headline text-2xl">Admin Dashboard</CardTitle>
-                <CardDescription>Add a new application to the GharApp directory.</CardDescription>
+                <CardDescription>Add a new application to the Nepali App Hub directory.</CardDescription>
               </CardHeader>
               <CardContent>
                 <AddAppForm />
