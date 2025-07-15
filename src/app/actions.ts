@@ -18,8 +18,8 @@ export async function login(credentials: z.infer<typeof loginSchema>) {
   const { username, password } = parsedCredentials.data;
 
   // In a real application, these would be in environment variables
-  const adminUsername = 'isadmin';
-  const adminPassword = 'Sanu@!2';
+  const adminUsername = 'ADMIN';
+  const adminPassword = 'Sanu@123';
 
   if (username === adminUsername && password === adminPassword) {
     cookies().set('auth', 'true', { httpOnly: true, secure: process.env.NODE_ENV === 'production' });

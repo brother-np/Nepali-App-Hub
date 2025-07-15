@@ -45,9 +45,10 @@ export function LoginForm() {
       if (result.success) {
         toast({
           title: 'Login Successful',
-          description: 'Redirecting to admin dashboard...',
+          description: 'Redirecting to the admin dashboard...',
         });
         router.push('/admin');
+        router.refresh(); // Refresh the page to ensure state is up-to-date
       } else {
         toast({
           title: 'Login Failed',
@@ -58,7 +59,7 @@ export function LoginForm() {
     } catch (error) {
        toast({
         title: 'An error occurred',
-        description: 'Please try again.',
+        description: 'Something went wrong. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -76,7 +77,7 @@ export function LoginForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="isadmin" {...field} />
+                <Input placeholder="ADMIN" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

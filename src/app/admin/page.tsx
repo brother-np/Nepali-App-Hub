@@ -6,8 +6,8 @@ export default function AdminPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-1">
-        <div className="container mx-auto py-8 px-4">
+      <main className="flex-1 py-8">
+        <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Card>
               <CardHeader>
