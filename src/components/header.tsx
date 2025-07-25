@@ -44,7 +44,7 @@ const Logo = () => (
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M50 45L-1.90735e-06 82.5V100H100V82.5L50 45ZM20 82.5L50 67.5L80 82.5L50 97.5L20 82.5Z"
+      d="M50 45L0 82.5V100H100V82.5L50 45ZM20 82.5L50 67.5L80 82.5L50 97.5L20 82.5Z"
       fill="#FFFFFF"
     />
   </svg>
